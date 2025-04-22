@@ -1,0 +1,88 @@
+{% extends "base.html.j2" %}
+{% block content %}
+<h1>Projects and tools</h1>
+
+Over the years I have made several projects that might be useful for others. Some of these projects are utilities that could potentially improve your workflow, other projects are security tools or programming tools. I discovered that Github repositories are not always indexed by search engines. Therefore I describe some of the most interesting projects here so it can be found more easily. The projects are divided by categories.
+
+{% macro table() %}
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{ caller() }}
+    </tbody>
+</table>
+{% endmacro %}
+
+<h2>Utilities</h2>
+
+{% call table() %}
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/batch">Batch</a></td>
+    <td>Reimplementation of https://github.com/taupiqueur/batch. Pipe something to batch, for example the output of <code>ls</code>. Edit stdin using your favorite editor, delete, modify or add lines. I use batch for bulk renaming, editing ip routes using <a href="https://github.com/JJK96/dotfiles/blob/master/bin/ip_edit">ip_edit</a> and many other things. See also my <a href="https://github.com/JJK96/kakoune-config/blob/master/autoload/batch.kak">kakoune integration</a>.
+        <ul>
+            <li>If a line is empty, <code>drop</code> is executed with the original value as argument.</li>
+            <li>If a line is changed, <code>map</code> is executed with the original and the new value as arguments.</li>
+            <li>If a line is unchanged, <code>pick</code> is executed with the original value as argument.</li>
+            <li>If a line is added, <code>add</code> is executed with the new value as the argument.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/sortby">sortby</a></td>
+    <td>Sort stdin by the output of the given command. E.g. <code>ls | sortby wc -c</code> to sort the files by length of the filename.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/CommandFS">CommandFS</a></td>
+    <td>A FUSE filesystem that processes a directory of input files by executing a command on each file when it is read from the filesystem. I use this in <a href="https://github.com/JJK96/1PasswordFS">1PasswordFS</a> to automatically inject secrets into config files without having to permanently store the secrets on disk.</td>
+</tr>
+{% endcall %}
+
+<h2>Programming</h2>
+{% call table() %}
+<tr>
+    <td><a href="https://github.com/JJK96/tree-sitter-vbscript">Tree-sitter-vbscript</a></td>
+    <td>A Tree-sitter grammar for VBScript. Far from complete, but works for my usecases</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/python-template">Python template</a></td>
+    <td>A Cookiecutter template for starting a new Python project. It includes Click for making a CLI interface, a Pytest testing suite and more.</td>
+</tr>
+{% endcall %}
+
+<h2>Security</h2>
+
+{% call table() %}
+<tr>
+    <td><a href="https://github.com/jjk96/reporter">Reporter</a></td>
+    <td><p>Reporting tool for penetration testing and red teaming. It is designed to be compatible with the file format of Dradis (using <a href="https://github.com/JJK96/textile_parser">textile_parser</a>), but can be easily adapted to another format. The tool uses LaTeX with Jinja preprocessing to build a report. The tool supports child templates and overriding LaTeX files on a project-specific basis. The LaTeX template contains several utilities for displaying code or images, some of the methods circumvent LaTeX issues in ways that took me quite some time to figure out. The default template is very ugly, but with some knowledge of LaTeX you can easily adapt it to fit the branding of your company. Using the CLI you can create projects, add issues, add evidence and compile projects. Issues can also be created based on a library of standard issues (which you have to provide yourself). I used this tool full-time for a year, when I was outsourced to another company.</p>
+    <p>I also developed <a href="https://github.com/JJK96/vscode-reporter">tooling for Visual Studio Code</a> to ease working with the tool.</p>
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/burp.py">burp.py</a></td>
+    <td>A python script/module to handle exported requests and responses from Burp Suite.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/cpe_search.py">cpe_search</a></td>
+    <td>A command line tool to search for CVE's for a given vendor and product.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/constant-searcher">Constant searcher</a></td>
+    <td>Search for constants in Windows header files. I parsed Windows header files to extract all kinds of named constants. You can grep the resulting files in this repo for either the constant value or constant name. I use this regularly while reverse engineering to quickly find available options or meanings of error codes.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/android-decompiler">Android decompiler</a></td>
+    <td>Uses apktool and fernflower to unpack and decompile and APK file automatically.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/macos_mdm_cert_extractor">MacOS MDM cert extractor</a></td>
+    <td>Extract the Mobile Device Managemen (MDM) certificate from MacOS. This allows using this certificate on another device to access services that are restricted to a managed device. The heavy lifting is done by <a href="https://github.com/n0fate/chainbreaker">chainbreaker</a> and OpenSSL.</td>
+</tr>
+{% endcall %}
+
+{% endblock %}
