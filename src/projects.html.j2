@@ -18,60 +18,18 @@ Over the years I have made several projects that might be useful for others. Som
 </table>
 {% endmacro %}
 
-<h2>Utilities</h2>
-
-{% call table() %}
-<tr>
-    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/batch">Batch</a></td>
-    <td>Reimplementation of https://github.com/taupiqueur/batch. Pipe something to batch, for example the output of <code>ls</code>. Edit stdin using your favorite editor, delete, modify or add lines. I use batch for bulk renaming, editing ip routes using <a href="https://github.com/JJK96/dotfiles/blob/master/bin/ip_edit">ip_edit</a> and many other things. See also my <a href="https://github.com/JJK96/kakoune-config/blob/master/autoload/batch.kak">kakoune integration</a>.
-        <ul>
-            <li>If a line is empty, <code>drop</code> is executed with the original value as argument.</li>
-            <li>If a line is changed, <code>map</code> is executed with the original and the new value as arguments.</li>
-            <li>If a line is unchanged, <code>pick</code> is executed with the original value as argument.</li>
-            <li>If a line is added, <code>add</code> is executed with the new value as the argument.</li>
-        </ul>
-    </td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/sortby">sortby</a></td>
-    <td>Sort stdin by the output of the given command. E.g. <code>ls | sortby wc -c</code> to sort the files by length of the filename.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/CommandFS">CommandFS</a></td>
-    <td>A FUSE filesystem that processes a directory of input files by executing a command on each file when it is read from the filesystem. I use this in <a href="https://github.com/JJK96/1PasswordFS">1PasswordFS</a> to automatically inject secrets into config files without having to permanently store the secrets on disk.</td>
-</tr>
-{% endcall %}
-
-<h2>Programming</h2>
-{% call table() %}
-<tr>
-    <td><a href="https://github.com/JJK96/tree-sitter-vbscript">Tree-sitter-vbscript</a></td>
-    <td>A Tree-sitter grammar for VBScript. Far from complete, but works for my usecases</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/python-template">Python template</a></td>
-    <td>A Cookiecutter template for starting a new Python project. It includes Click for making a CLI interface, a Pytest testing suite and more.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/dataclass_mocker">Dataclass mocker</a></td>
-    <td>A Python library to instantiate any dataclass automatically by recursively providing arguments that match the type annotations. 
-        I have used this library successfully to perform all web request in a client API generated based on a specification.
-        This was useful because I was performing a penetration test and the only tooling that was able to parse the API specification I received was a Python library.
-    </td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/reveal.js-github-cards">reveal.js Github cards</a></td>
-    <td>A plug-in for reveal.js to display Github cards</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/vscode-textfile-comments">VSCode Textfile Comments</a></td>
-    <td>A plug-in for Visual Studio Code to use VSCode's built-in comment system to store comments in a JSON file. This allows you to perform a code review without needing a server to host the review results.</td>
-</tr>
-{% endcall %}
-
 <h2>Security</h2>
 
 {% call table() %}
+<tr>
+    <td><a href="https://github.com/jjk96/PIClin">PIClin</a></td>
+    <td>
+        <p>A shellcode compiler that uses linker scripting to compile C, Rust or Zig to shellcode without the hassle that many other shellcode compilers require.
+            For example, it does not require breaking strings up into character arrays. It allows using <code>main</code> as the entrypoint for your shellcode.
+            Finally, it also generates resolving stubs for any imported Win32 API functions that you use in your project.
+        </p>
+    </td>
+</tr>
 <tr>
     <td><a href="https://github.com/jjk96/reporter">Reporter</a></td>
     <td><p>Reporting tool for penetration testing and red teaming. It is designed to be compatible with the file format of Dradis (using <a href="https://github.com/JJK96/textile_parser">textile_parser</a>), but can be easily adapted to another format. The tool uses LaTeX with Jinja preprocessing to build a report. The tool supports child templates and overriding LaTeX files on a project-specific basis. The LaTeX template contains several utilities for displaying code or images, some of the methods circumvent LaTeX issues in ways that took me quite some time to figure out. The default template is very ugly, but with some knowledge of LaTeX you can easily adapt it to fit the branding of your company. Using the CLI you can create projects, add issues, add evidence and compile projects. Issues can also be created based on a library of standard issues (which you have to provide yourself). I used this tool full-time for a year, when I was outsourced to another company.</p>
@@ -122,6 +80,58 @@ Over the years I have made several projects that might be useful for others. Som
 <tr>
     <td><a href="https://github.com/JJK96/Jar-Scanner">Jar Scanner</a></td>
     <td>Scan a list of Jar files for vulnerabilities based on version numbers. It works by converting it to a pom.xml file and scanning that with <a href="https://owasp.org/www-project-dependency-check/">OWASP dependency check</a></td>
+</tr>
+{% endcall %}
+
+
+<h2>Utilities</h2>
+
+{% call table() %}
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/batch">Batch</a></td>
+    <td>Reimplementation of https://github.com/taupiqueur/batch. Pipe something to batch, for example the output of <code>ls</code>. Edit stdin using your favorite editor, delete, modify or add lines. I use batch for bulk renaming, editing ip routes using <a href="https://github.com/JJK96/dotfiles/blob/master/bin/ip_edit">ip_edit</a> and many other things. See also my <a href="https://github.com/JJK96/kakoune-config/blob/master/autoload/batch.kak">kakoune integration</a>.
+        <ul>
+            <li>If a line is empty, <code>drop</code> is executed with the original value as argument.</li>
+            <li>If a line is changed, <code>map</code> is executed with the original and the new value as arguments.</li>
+            <li>If a line is unchanged, <code>pick</code> is executed with the original value as argument.</li>
+            <li>If a line is added, <code>add</code> is executed with the new value as the argument.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/sortby">sortby</a></td>
+    <td>Sort stdin by the output of the given command. E.g. <code>ls | sortby wc -c</code> to sort the files by length of the filename.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/CommandFS">CommandFS</a></td>
+    <td>A FUSE filesystem that processes a directory of input files by executing a command on each file when it is read from the filesystem. I use this in <a href="https://github.com/JJK96/1PasswordFS">1PasswordFS</a> to automatically inject secrets into config files without having to permanently store the secrets on disk.</td>
+</tr>
+{% endcall %}
+
+<h2>Programming</h2>
+{% call table() %}
+<tr>
+    <td><a href="https://github.com/JJK96/tree-sitter-vbscript">Tree-sitter-vbscript</a></td>
+    <td>A Tree-sitter grammar for VBScript. Far from complete, but works for my usecases</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/python-template">Python template</a></td>
+    <td>A Cookiecutter template for starting a new Python project. It includes Click for making a CLI interface, a Pytest testing suite and more.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dataclass_mocker">Dataclass mocker</a></td>
+    <td>A Python library to instantiate any dataclass automatically by recursively providing arguments that match the type annotations. 
+        I have used this library successfully to perform all web request in a client API generated based on a specification.
+        This was useful because I was performing a penetration test and the only tooling that was able to parse the API specification I received was a Python library.
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/reveal.js-github-cards">reveal.js Github cards</a></td>
+    <td>A plug-in for reveal.js to display Github cards</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/vscode-textfile-comments">VSCode Textfile Comments</a></td>
+    <td>A plug-in for Visual Studio Code to use VSCode's built-in comment system to store comments in a JSON file. This allows you to perform a code review without needing a server to host the review results.</td>
 </tr>
 {% endcall %}
 
