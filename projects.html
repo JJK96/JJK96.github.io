@@ -47,6 +47,84 @@ Over the years I have made several projects that might be useful for others. Som
 
 
 
+<h2>Security</h2>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+<tr>
+    <td><a href="https://github.com/jjk96/PIClin">PIClin</a></td>
+    <td>
+        <p>A shellcode compiler that uses linker scripting to compile C, Rust or Zig to shellcode without the hassle that many other shellcode compilers require.
+            For example, it does not require breaking strings up into character arrays. It allows using <code>main</code> as the entrypoint for your shellcode.
+            Finally, it also generates resolving stubs for any imported Win32 API functions that you use in your project.
+        </p>
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/jjk96/reporter">Reporter</a></td>
+    <td><p>Reporting tool for penetration testing and red teaming. It is designed to be compatible with the file format of Dradis (using <a href="https://github.com/JJK96/textile_parser">textile_parser</a>), but can be easily adapted to another format. The tool uses LaTeX with Jinja preprocessing to build a report. The tool supports child templates and overriding LaTeX files on a project-specific basis. The LaTeX template contains several utilities for displaying code or images, some of the methods circumvent LaTeX issues in ways that took me quite some time to figure out. The default template is very ugly, but with some knowledge of LaTeX you can easily adapt it to fit the branding of your company. Using the CLI you can create projects, add issues, add evidence and compile projects. Issues can also be created based on a library of standard issues (which you have to provide yourself). I used this tool full-time for a year, when I was outsourced to another company.</p>
+    <p>I also developed <a href="https://github.com/JJK96/vscode-reporter">tooling for Visual Studio Code</a> to ease working with the tool.</p>
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/NorthwaveSecurity/verifier">Verifier</a></td>
+    <td>
+        <p>
+            Automatically generate evidence for a broad range of security issues you might discover during a penetration test. The intended workflow is that you determine a vulnerability either manually or through a different tool and then verify the relevant issue using Verifier to add it to your report. However, many of the issues in Verifier also have checks to see if the issue is present, which allows for scanner-like behaviour.
+            Verifier has integrations with <a href="https://github.com/dradis/dradis-ce">Dradis</a> and <a href="https://github.com/JJK96/reporter">Reporter</a> for automatically adding the findings to your reports.
+        </p>
+    </td>
+</tr>
+<tr>
+    <td><a href="https://github.com/NorthwaveSecurity/DradisFS">DradisFS</a></td>
+    <td>A FUSE filesystem for interacting with <a href="https://github.com/dradis/dradis-ce">Dradis</a>. This allows you to use your favorite text editor to edit Dradis issues, evidences, content blocks and attachments.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/burp.py">burp.py</a></td>
+    <td>A python script/module to handle exported requests and responses from Burp Suite.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/cpe_search.py">cpe_search</a></td>
+    <td>A command line tool to search for CVE's for a given vendor and product.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/constant-searcher">Constant searcher</a></td>
+    <td>Search for constants in Windows header files. I parsed Windows header files to extract all kinds of named constants. You can grep the resulting files in this repo for either the constant value or constant name. I use this regularly while reverse engineering to quickly find available options or meanings of error codes.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/android-decompiler">Android decompiler</a></td>
+    <td>Uses apktool and fernflower to unpack and decompile and APK file automatically.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/ibackupextractor.py">IBackupExtractor</a></td>
+    <td>Extract iOS backups, inspired by <a href="https://github.com/unixzii/ibackupextractor">unixzii/ibackupextractor</a></td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/extract_android_backup">extract_android_backup</a></td>
+    <td>Extract Android backups. A very simple wrapper around Python's <code>zlib</code> decompression and <code>tar</code></td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/macos_mdm_cert_extractor">MacOS MDM cert extractor</a></td>
+    <td>Extract the Mobile Device Managemen (MDM) certificate from MacOS. This allows using this certificate on another device to access services that are restricted to a managed device. The heavy lifting is done by <a href="https://github.com/n0fate/chainbreaker">chainbreaker</a> and OpenSSL.</td>
+</tr>
+<tr>
+    <td><a href="https://github.com/JJK96/Jar-Scanner">Jar Scanner</a></td>
+    <td>Scan a list of Jar files for vulnerabilities based on version numbers. It works by converting it to a pom.xml file and scanning that with <a href="https://owasp.org/www-project-dependency-check/">OWASP dependency check</a></td>
+</tr>
+
+    </tbody>
+</table>
+
+
+
 <h2>Utilities</h2>
 
 
@@ -116,74 +194,6 @@ Over the years I have made several projects that might be useful for others. Som
 <tr>
     <td><a href="https://github.com/JJK96/vscode-textfile-comments">VSCode Textfile Comments</a></td>
     <td>A plug-in for Visual Studio Code to use VSCode's built-in comment system to store comments in a JSON file. This allows you to perform a code review without needing a server to host the review results.</td>
-</tr>
-
-    </tbody>
-</table>
-
-
-<h2>Security</h2>
-
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        
-<tr>
-    <td><a href="https://github.com/jjk96/reporter">Reporter</a></td>
-    <td><p>Reporting tool for penetration testing and red teaming. It is designed to be compatible with the file format of Dradis (using <a href="https://github.com/JJK96/textile_parser">textile_parser</a>), but can be easily adapted to another format. The tool uses LaTeX with Jinja preprocessing to build a report. The tool supports child templates and overriding LaTeX files on a project-specific basis. The LaTeX template contains several utilities for displaying code or images, some of the methods circumvent LaTeX issues in ways that took me quite some time to figure out. The default template is very ugly, but with some knowledge of LaTeX you can easily adapt it to fit the branding of your company. Using the CLI you can create projects, add issues, add evidence and compile projects. Issues can also be created based on a library of standard issues (which you have to provide yourself). I used this tool full-time for a year, when I was outsourced to another company.</p>
-    <p>I also developed <a href="https://github.com/JJK96/vscode-reporter">tooling for Visual Studio Code</a> to ease working with the tool.</p>
-    </td>
-</tr>
-<tr>
-    <td><a href="https://github.com/NorthwaveSecurity/verifier">Verifier</a></td>
-    <td>
-        <p>
-            Automatically generate evidence for a broad range of security issues you might discover during a penetration test. The intended workflow is that you determine a vulnerability either manually or through a different tool and then verify the relevant issue using Verifier to add it to your report. However, many of the issues in Verifier also have checks to see if the issue is present, which allows for scanner-like behaviour.
-            Verifier has integrations with <a href="https://github.com/dradis/dradis-ce">Dradis</a> and <a href="https://github.com/JJK96/reporter">Reporter</a> for automatically adding the findings to your reports.
-        </p>
-    </td>
-</tr>
-<tr>
-    <td><a href="https://github.com/NorthwaveSecurity/DradisFS">DradisFS</a></td>
-    <td>A FUSE filesystem for interacting with <a href="https://github.com/dradis/dradis-ce">Dradis</a>. This allows you to use your favorite text editor to edit Dradis issues, evidences, content blocks and attachments.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/burp.py">burp.py</a></td>
-    <td>A python script/module to handle exported requests and responses from Burp Suite.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/cpe_search.py">cpe_search</a></td>
-    <td>A command line tool to search for CVE's for a given vendor and product.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/constant-searcher">Constant searcher</a></td>
-    <td>Search for constants in Windows header files. I parsed Windows header files to extract all kinds of named constants. You can grep the resulting files in this repo for either the constant value or constant name. I use this regularly while reverse engineering to quickly find available options or meanings of error codes.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/android-decompiler">Android decompiler</a></td>
-    <td>Uses apktool and fernflower to unpack and decompile and APK file automatically.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/dotfiles/blob/master/python_bin/ibackupextractor.py">IBackupExtractor</a></td>
-    <td>Extract iOS backups, inspired by <a href="https://github.com/unixzii/ibackupextractor">unixzii/ibackupextractor</a></td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/dotfiles/blob/master/bin/extract_android_backup">extract_android_backup</a></td>
-    <td>Extract Android backups. A very simple wrapper around Python's <code>zlib</code> decompression and <code>tar</code></td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/macos_mdm_cert_extractor">MacOS MDM cert extractor</a></td>
-    <td>Extract the Mobile Device Managemen (MDM) certificate from MacOS. This allows using this certificate on another device to access services that are restricted to a managed device. The heavy lifting is done by <a href="https://github.com/n0fate/chainbreaker">chainbreaker</a> and OpenSSL.</td>
-</tr>
-<tr>
-    <td><a href="https://github.com/JJK96/Jar-Scanner">Jar Scanner</a></td>
-    <td>Scan a list of Jar files for vulnerabilities based on version numbers. It works by converting it to a pom.xml file and scanning that with <a href="https://owasp.org/www-project-dependency-check/">OWASP dependency check</a></td>
 </tr>
 
     </tbody>
